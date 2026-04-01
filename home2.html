@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Furnique — Alternate Showcase | Home 2</title>
+  <meta name="description"
+    content="A curated alternate showcase of Furnique's premium furniture collection — editorial photography, materials guide, and exclusive drops." />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Special font: Cormorant Garamond — editorial, high-fashion serif -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23C97B4B'/><text x='50%25' y='65%25' text-anchor='middle' font-size='20' fill='white' font-family='serif'>F</text></svg>" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="h2-font">
+
+  <!-- §1 OVERLAY + MOBILE NAV -->
+  <div class="overlay" id="overlay" onclick="closeMobileNav()"></div>
+  <nav class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header" style="height: 60px;">
+      <button class="mobile-nav-close" onclick="closeMobileNav()"><i data-lucide="x"></i></button>
+    </div>
+    <ul>
+      <li><a href="#" onclick="toggleMobileSub('mHome',event)">Home <i data-lucide="chevron-down"></i></a>
+        <ul class="mobile-sub" id="mHome">
+          <li><a href="index.html">Home 1</a></li>
+          <li><a href="home2.html">Home 2</a></li>
+        </ul>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#" onclick="toggleMobileSub('mDash',event)">Dashboard <i data-lucide="chevron-down"></i></a>
+        <ul class="mobile-sub" id="mDash">
+          <li><a href="user-dashboard.html">User Dashboard</a></li>
+          <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+        </ul>
+      </li>
+    </ul>
+    <a href="login.html" class="mobile-shop-btn">Login</a>
+  </nav>
+
+  <header class="header" id="mainHeader">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i data-lucide="armchair"></i></div>
+      <span class="logo-text">Furni<span>que</span></span>
+    </a>
+    <ul class="nav">
+      <li><a href="#" class="active" onclick="toggleHeaderDropdown(this, event)">Home <i
+            data-lucide="chevron-down"></i></a>
+        <div class="dropdown"><a href="index.html">Home 1</a><a href="home2.html" class="active">Home 2</a></div>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#" onclick="toggleHeaderDropdown(this, event)">Dashboard <i data-lucide="chevron-down"></i></a>
+        <div class="dropdown"><a href="user-dashboard.html">User Dashboard</a><a href="admin-dashboard.html">Admin
+            Dashboard</a>
+        </div>
+      </li>
+    </ul>
+    <div class="header-right">
+      <button class="btn-theme" onclick="toggleDir()" title="Toggle RTL/LTR"><i data-lucide="globe"></i></button>
+      <button class="btn-theme" id="themeToggle" onclick="toggleTheme()"><i data-lucide="moon"
+          id="themeIcon"></i></button>
+      <a href="login.html" class="btn-shop-now">Login</a>
+      <button class="hamburger" onclick="openMobileNav()"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- §3 HERO — Fullscreen Image with Editorial Typography -->
+    <section class="hero-fullscreen">
+      <div class="hero-fs-bg">
+        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=1920&q=85"
+          alt="Luxury Interior" />
+      </div>
+      <div class="hero-fs-overlay"></div>
+
+      <div class="hero-fs-content">
+        <div class="tag"
+          style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.25);color:rgba(255,255,255,0.9);font-family:'DM Sans',sans-serif;">
+          <i data-lucide="sparkles" style="width:14px"></i> Spring Collection 2025
+        </div>
+        <h1>Where Craft<br>Meets <em>Comfort</em></h1>
+        <p>A curated edit of our most celebrated pieces — for the home that refuses to compromise between beauty and
+          living.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="#editor-picks" class="btn-primary" style="font-family:'DM Sans',sans-serif;">
+            <i data-lucide="grid" style="width:18px"></i> View Collection
+          </a>
+          <a href="about.html" class="btn-secondary"
+            style="border-color:rgba(255,255,255,0.35);color:#fff;font-family:'DM Sans',sans-serif;">
+            Our Story <i data-lucide="arrow-right" style="width:16px"></i>
+          </a>
+        </div>
+        <div class="hero-fs-stats">
+          <div><span class="hero-fs-stat-num">12K+</span><span class="hero-fs-stat-label">Happy Homes</span></div>
+          <div><span class="hero-fs-stat-num">500+</span><span class="hero-fs-stat-label">Designs</span></div>
+          <div><span class="hero-fs-stat-num">30+</span><span class="hero-fs-stat-label">Countries</span></div>
+        </div>
+      </div>
+
+      <div class="hero-fs-scroll">
+        <i data-lucide="chevron-down" style="width:20px"></i>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- §4 TICKER (different style — reversed dark) -->
+    <div style="background:var(--text-primary);padding:16px 0;overflow:hidden;">
+      <div class="dark">
+        <div class="ticker-wrap" style="animation:ticker 25s linear infinite;">
+          <div class="ticker-item" style="color:rgba(255,255,255,0.5);">✦ Free Delivery Over $500 <div
+              class="ticker-dot"></div>
+          </div>
+          <div class="ticker-item" style="color:rgba(255,255,255,0.5);">✦ 10-Year Structural Warranty <div
+              class="ticker-dot"></div>
+          </div>
+          <div class="ticker-item" style="color:rgba(255,255,255,0.5);">✦ 30-Day Returns <div class="ticker-dot"></div>
+          </div>
+          <div class="ticker-item" style="color:rgba(255,255,255,0.5);">✦ FSC-Certified Wood <div class="ticker-dot">
+            </div>
+          </div>
+          <div class="ticker-item" style="color:rgba(255,255,255,0.5);">✦ White-Glove Delivery <div class="ticker-dot">
+            </div>
+          </div>
+          <div class="ticker-item" style="color:rgba(255,255,255,0.5);">✦ Expert Design Consultation <div
+              class="ticker-dot"></div>
+          </div>
+          <div class="ticker-item" style="color:rgba(255,255,255,0.5);">✦ Free Delivery Over $500 <div
+              class="ticker-dot"></div>
+          </div>
+          <div class="ticker-item" style="color:rgba(255,255,255,0.5);">✦ 10-Year Structural Warranty <div
+              class="ticker-dot"></div>
+          </div>
+          <div class="ticker-item" style="color:rgba(255,255,255,0.5);">✦ 30-Day Returns <div class="ticker-dot"></div>
+          </div>
+          <div class="ticker-item" style="color:rgba(255,255,255,0.5);">✦ FSC-Certified Wood <div class="ticker-dot">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §5 CATEGORY HORIZONTAL SCROLL -->
+    <section style="padding:60px 0;background:var(--bg-secondary);">
+      <div class="container">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:30px;">
+          <div>
+            <div class="tag"><i data-lucide="layers" style="width:14px"></i> All Rooms</div>
+            <h2 style="font-size:clamp(26px,3vw,38px);">Browse by <span class="gradient-text">Space</span></h2>
+          </div>
+          <a href="index.html#categories" class="btn-outline">View All</a>
+        </div>
+        <div class="cat-scroll-wrap">
+          <div class="cat-scroll">
+            <a href="#" class="cat-scroll-card">
+              <div class="cat-icon"><i data-lucide="armchair"></i></div>
+              <h5>Living Room</h5><span>214 Items</span>
+            </a>
+            <a href="#" class="cat-scroll-card">
+              <div class="cat-icon"><i data-lucide="bed"></i></div>
+              <h5>Bedroom</h5><span>178 Items</span>
+            </a>
+            <a href="#" class="cat-scroll-card">
+              <div class="cat-icon"><i data-lucide="utensils-crossed"></i></div>
+              <h5>Dining</h5><span>96 Items</span>
+            </a>
+            <a href="#" class="cat-scroll-card">
+              <div class="cat-icon"><i data-lucide="monitor"></i></div>
+              <h5>Office</h5><span>143 Items</span>
+            </a>
+            <a href="#" class="cat-scroll-card">
+              <div class="cat-icon"><i data-lucide="sun"></i></div>
+              <h5>Outdoor</h5><span>82 Items</span>
+            </a>
+            <a href="#" class="cat-scroll-card">
+              <div class="cat-icon"><i data-lucide="baby"></i></div>
+              <h5>Kids Room</h5><span>67 Items</span>
+            </a>
+            <a href="#" class="cat-scroll-card">
+              <div class="cat-icon"><i data-lucide="bath"></i></div>
+              <h5>Bathroom</h5><span>54 Items</span>
+            </a>
+            <a href="#" class="cat-scroll-card">
+              <div class="cat-icon"><i data-lucide="store"></i></div>
+              <h5>Storage</h5><span>91 Items</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §6 FLASH SALE BANNER with Countdown -->
+    <section style="background:var(--bg-primary);padding:60px 0;">
+      <div class="container">
+        <div class="promo-strip reveal">
+          <div>
+            <div class="tag"
+              style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.9);margin-bottom:16px;">
+              Flash Sale — Ends Soon</div>
+            <h2>Spring Sale — Up to <span style="text-decoration:underline;text-underline-offset:6px;">40% Off</span>
+            </h2>
+            <p>Don't miss our biggest sale of the season on 200+ selected pieces.</p>
+          </div>
+          <div style="text-align:center;">
+            <p
+              style="color:rgba(255,255,255,0.5);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">
+              Ends In</p>
+            <div style="display:flex;gap:12px;">
+              <div
+                style="background:rgba(255,255,255,0.1);border-radius:12px;padding:16px 20px;text-align:center;min-width:70px;">
+                <strong id="t-h"
+                  style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#fff;display:block;">09</strong>
+                <small
+                  style="font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:2px;">Hrs</small>
+              </div>
+              <div
+                style="background:rgba(255,255,255,0.1);border-radius:12px;padding:16px 20px;text-align:center;min-width:70px;">
+                <strong id="t-m"
+                  style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#fff;display:block;">24</strong>
+                <small
+                  style="font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:2px;">Min</small>
+              </div>
+              <div
+                style="background:rgba(255,255,255,0.1);border-radius:12px;padding:16px 20px;text-align:center;min-width:70px;">
+                <strong id="t-s"
+                  style="font-family:'Cormorant Garamond',serif;font-size:34px;color:#fff;display:block;">38</strong>
+                <small
+                  style="font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:2px;">Sec</small>
+              </div>
+            </div>
+          </div>
+          <a href="index.html#products" class="btn-primary"
+            style="background:#fff;color:var(--accent);flex-shrink:0;">Shop Sale Now <i data-lucide="tag"
+              style="width:16px"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- §7 EDITOR'S PICKS -->
+    <section class="section-pad" id="editor-picks" style="background:var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="award" style="width:14px"></i> Curated Selection</div>
+          <h2>Editor's <span class="gradient-text">Picks</span></h2>
+          <p>Personally selected by our lead designer — furniture that defines how you live.</p>
+        </div>
+        <div class="products-grid">
+          <div class="product-card reveal">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1549187774-b4e9b0445b41?auto=format&fit=crop&w=600&q=80"
+                alt="Marble Table" />
+              <span class="product-badge">Editor's Pick</span>
+              <div class="product-actions"><button class="product-action-btn"><i data-lucide="heart"
+                    style="width:16px"></i></button><button class="product-action-btn"><i data-lucide="eye"
+                    style="width:16px"></i></button></div>
+            </div>
+            <div class="product-info">
+              <div class="product-cat">Living Room</div>
+              <h3 class="product-name">Calacatta Marble Table</h3>
+              <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(87)</span></div>
+              <div class="product-footer"><span class="product-price">$1,460</span><button class="btn-add-cart"><i
+                    data-lucide="shopping-bag" style="width:18px"></i></button></div>
+            </div>
+          </div>
+          <div class="product-card reveal delay-1">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=600&q=80"
+                alt="Accent Chair" />
+              <span class="product-badge new">New</span>
+              <div class="product-actions"><button class="product-action-btn"><i data-lucide="heart"
+                    style="width:16px"></i></button><button class="product-action-btn"><i data-lucide="eye"
+                    style="width:16px"></i></button></div>
+            </div>
+            <div class="product-info">
+              <div class="product-cat">Living Room</div>
+              <h3 class="product-name">Cashmere Reading Chair</h3>
+              <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(63)</span></div>
+              <div class="product-footer"><span class="product-price">$890</span><button class="btn-add-cart"><i
+                    data-lucide="shopping-bag" style="width:18px"></i></button></div>
+            </div>
+          </div>
+          <div class="product-card reveal delay-2">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=600&q=80"
+                alt="Dresser" />
+              <span class="product-badge sale">-18%</span>
+              <div class="product-actions"><button class="product-action-btn"><i data-lucide="heart"
+                    style="width:16px"></i></button><button class="product-action-btn"><i data-lucide="eye"
+                    style="width:16px"></i></button></div>
+            </div>
+            <div class="product-info">
+              <div class="product-cat">Bedroom</div>
+              <h3 class="product-name">Heirloom Walnut Dresser</h3>
+              <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(44)</span></div>
+              <div class="product-footer">
+                <div><span class="product-price">$1,394</span><span class="product-price-old">$1,700</span></div><button
+                  class="btn-add-cart"><i data-lucide="shopping-bag" style="width:18px"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="product-card reveal delay-3">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1461175827210-5ceac3e39dd2?auto=format&fit=crop&w=600&q=80"
+                alt="Bookshelf" />
+              <div class="product-actions"><button class="product-action-btn"><i data-lucide="heart"
+                    style="width:16px"></i></button><button class="product-action-btn"><i data-lucide="eye"
+                    style="width:16px"></i></button></div>
+            </div>
+            <div class="product-info">
+              <div class="product-cat">Office</div>
+              <h3 class="product-name">Teak Library Tower</h3>
+              <div class="product-rating"><span class="stars">★★★★☆</span><span class="rating-count">(28)</span></div>
+              <div class="product-footer"><span class="product-price">$1,150</span><button class="btn-add-cart"><i
+                    data-lucide="shopping-bag" style="width:18px"></i></button></div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:50px;"><a href="index.html#products" class="btn-secondary">View Full
+            Collection <i data-lucide="arrow-right" style="width:16px"></i></a></div>
+      </div>
+    </section>
+
+    <!-- §8 MATERIALS GUIDE -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="gem" style="width:14px"></i> Material Guide</div>
+          <h2>Crafted from <span class="gradient-text">Nature's Finest</span></h2>
+          <p>We work with three signature materials — each chosen for beauty, durability, and sustainability.</p>
+        </div>
+        <div class="material-grid">
+          <div class="material-card reveal">
+            <img src="f3.jpg" alt="Oak Wood" />
+            <div class="material-info">
+              <div class="material-name">Solid Oak</div>
+              <div class="material-desc">Durable, warm grain — ages beautifully over decades.</div>
+              <span class="material-tag">FSC Certified</span>
+            </div>
+          </div>
+          <div class="material-card reveal delay-1">
+            <img src="f5.jpg" alt="Walnut" />
+            <div class="material-info">
+              <div class="material-name">Black Walnut</div>
+              <div class="material-desc">Rich, dark tones with a natural lustre that never fades.</div>
+              <span class="material-tag">Heirloom Grade</span>
+            </div>
+          </div>
+          <div class="material-card reveal delay-2">
+            <img src="f2.jpg" alt="Velvet Fabric" />
+            <div class="material-info">
+              <div class="material-name">Belgian Velvet</div>
+              <div class="material-desc">Soft, tactile luxury in 24 curated tones.</div>
+              <span class="material-tag">Stain Resistant</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §9 STATS (horizontal list style — different from Home 1) -->
+    <div style="background:var(--bg-secondary);padding:60px 0;">
+      <div class="container">
+        <div class="h2-stats-flex">
+          <div style="flex:1;padding:40px 30px;text-align:center;border-right:1px solid var(--border);" class="reveal">
+            <span
+              style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--accent);display:block;line-height:1;">2010</span>
+            <span
+              style="font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;font-weight:600;">Founded</span>
+          </div>
+          <div style="flex:1;padding:40px 30px;text-align:center;border-right:1px solid var(--border);"
+            class="reveal delay-1">
+            <span
+              style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--accent);display:block;line-height:1;">30+</span>
+            <span
+              style="font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;font-weight:600;">Countries</span>
+          </div>
+          <div style="flex:1;padding:40px 30px;text-align:center;border-right:1px solid var(--border);"
+            class="reveal delay-2">
+            <span
+              style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--accent);display:block;line-height:1;">150+</span>
+            <span
+              style="font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;font-weight:600;">Craftsmen</span>
+          </div>
+          <div style="flex:1;padding:40px 30px;text-align:center;" class="reveal delay-3">
+            <span
+              style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--accent);display:block;line-height:1;">4.9★</span>
+            <span
+              style="font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;font-weight:600;">Rating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- §10 TRENDING NOW (horizontal scroll of products) -->
+    <section class="section-pad">
+      <div class="container">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;" class="reveal">
+          <div>
+            <div class="tag"><i data-lucide="trending-up" style="width:14px"></i> Trending</div>
+            <h2 style="font-size:clamp(24px,3vw,40px);">Trending <span class="gradient-text">Right Now</span></h2>
+          </div>
+          <a href="index.html#products" class="btn-outline">See All</a>
+        </div>
+        <div style="overflow-x:auto;scrollbar-width:none;padding-bottom:8px;">
+          <div style="display:flex;gap:24px;width:max-content;">
+            <div class="product-card" style="width:280px;flex-shrink:0;">
+              <div class="product-img"><img
+                  src="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=400&q=80"
+                  alt="Sofa" /><span class="product-badge">Trending</span></div>
+              <div class="product-info">
+                <div class="product-cat">Living Room</div>
+                <h3 class="product-name">Velvet Cloud Sofa</h3>
+                <div class="product-footer"><span class="product-price">$1,299</span><button class="btn-add-cart"><i
+                      data-lucide="shopping-bag" style="width:18px"></i></button></div>
+              </div>
+            </div>
+            <div class="product-card" style="width:280px;flex-shrink:0;">
+              <div class="product-img"><img
+                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=80"
+                  alt="Bed" /></div>
+              <div class="product-info">
+                <div class="product-cat">Bedroom</div>
+                <h3 class="product-name">Solid Oak Bed Frame</h3>
+                <div class="product-footer"><span class="product-price">$1,850</span><button class="btn-add-cart"><i
+                      data-lucide="shopping-bag" style="width:18px"></i></button></div>
+              </div>
+            </div>
+            <div class="product-card" style="width:280px;flex-shrink:0;">
+              <div class="product-img"><img
+                  src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=400&q=80"
+                  alt="Chair" /><span class="product-badge new">New</span></div>
+              <div class="product-info">
+                <div class="product-cat">Bedroom</div>
+                <h3 class="product-name">Linen Reading Chair</h3>
+                <div class="product-footer"><span class="product-price">$590</span><button class="btn-add-cart"><i
+                      data-lucide="shopping-bag" style="width:18px"></i></button></div>
+              </div>
+            </div>
+            <div class="product-card" style="width:280px;flex-shrink:0;">
+              <div class="product-img"><img
+                  src="https://images.unsplash.com/photo-1491926626787-62db157af940?auto=format&fit=crop&w=400&q=80"
+                  alt="Desk Chair" /></div>
+              <div class="product-info">
+                <div class="product-cat">Office</div>
+                <h3 class="product-name">Ergonomic Desk Chair</h3>
+                <div class="product-footer"><span class="product-price">$680</span><button class="btn-add-cart"><i
+                      data-lucide="shopping-bag" style="width:18px"></i></button></div>
+              </div>
+            </div>
+            <div class="product-card" style="width:280px;flex-shrink:0;">
+              <div class="product-img"><img
+                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&q=80"
+                  alt="Table" /><span class="product-badge sale">-20%</span></div>
+              <div class="product-info">
+                <div class="product-cat">Dining</div>
+                <h3 class="product-name">Walnut Dining Table</h3>
+                <div class="product-footer"><span class="product-price">$920</span><button class="btn-add-cart"><i
+                      data-lucide="shopping-bag" style="width:18px"></i></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §11 VIRTUAL SHOWROOM CTA -->
+    <section class="section-pad" style="background:var(--bg-secondary);">
+      <div class="container">
+        <div class="showroom-cta reveal">
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=80"
+            alt="Showroom" />
+          <div class="showroom-overlay"></div>
+          <div class="showroom-content">
+            <div class="tag"
+              style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;margin-bottom:16px;font-family:'DM Sans',sans-serif;">
+              <i data-lucide="video" style="width:14px"></i> Virtual Showroom
+            </div>
+            <h2>Tour Our Showroom<br><em>from Anywhere</em></h2>
+            <p>Book a virtual walkthrough with one of our designers — see furniture in real spaces before you buy.</p>
+            <a href="contact.html" class="btn-primary" style="font-family:'DM Sans',sans-serif;">Book a Virtual Tour <i
+                data-lucide="video" style="width:16px"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §12 ARTISANS / CRAFTSPEOPLE -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="users" style="width:14px"></i> Our Craftspeople</div>
+          <h2>The <span class="gradient-text">Makers</span> Behind Your Furniture</h2>
+          <p>150+ master craftsmen across 8 countries — skilled hands, generational traditions.</p>
+        </div>
+        <div class="h2-artisan-grid">
+          <div class="seller-card reveal" style="width:100%;">
+            <div class="seller-avatar"><img src="https://i.pravatar.cc/220?img=11" alt="Erik" /></div>
+            <div class="seller-name">Erik Lindqvist</div>
+            <div class="seller-role">Master Carpenter · Stockholm</div>
+            <div class="seller-sales">480 Pieces</div>
+          </div>
+          <div class="seller-card reveal delay-1" style="width:100%;">
+            <div class="seller-avatar"><img src="https://i.pravatar.cc/220?img=25" alt="Kwame" /></div>
+            <div class="seller-name">Kwame Asante</div>
+            <div class="seller-role">Upholstery Expert · Accra</div>
+            <div class="seller-sales">360 Pieces</div>
+          </div>
+          <div class="seller-card reveal delay-2" style="width:100%;">
+            <div class="seller-avatar"><img src="https://i.pravatar.cc/220?img=5" alt="Amara" /></div>
+            <div class="seller-name">Amara Petrov</div>
+            <div class="seller-role">Wood Artist · Prague</div>
+            <div class="seller-sales">294 Pieces</div>
+          </div>
+          <div class="seller-card reveal delay-3" style="width:100%;">
+            <div class="seller-avatar"><img src="https://i.pravatar.cc/220?img=15" alt="Hiroshi" /></div>
+            <div class="seller-name">Hiroshi Tanaka</div>
+            <div class="seller-role">Lacquer Specialist · Kyoto</div>
+            <div class="seller-sales">218 Pieces</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- §13 INSPIRATION MASONRY GALLERY -->
+    <section class="section-pad" style="background:var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="image" style="width:14px"></i> Style Gallery</div>
+          <h2>Interiors We <span class="gradient-text">Love</span></h2>
+          <p>Real homes styled with Furnique — shared by our community. Tag #Furnique to be featured.</p>
+        </div>
+        <div class="masonry-grid reveal">
+          <div class="masonry-item"><img
+              src="f6.webp"
+              alt="Bedroom" /><span class="masonry-label">Bedroom</span></div>
+          <div class="masonry-item"><img
+              src="f7.webp"
+              alt="Living Room" /><span class="masonry-label">Living Room</span></div>
+          <div class="masonry-item"><img
+              src="f8.jpg"
+              alt="Bedroom Suite" /><span class="masonry-label">Bedroom Suite</span></div>
+          <div class="masonry-item"><img
+              src="f9.jpg"
+              alt="Reading Corner" /><span class="masonry-label">Reading Corner</span></div>
+          <div class="masonry-item"><img
+              src="f10.jpg"
+              alt="Home Office" /><span class="masonry-label">Home Office</span></div>
+          <div class="masonry-item"><img
+              src="f11.avif"
+              alt="Dining Room" /><span class="masonry-label">Dining Room</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §14 VIDEO / BEHIND THE SCENES -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="film" style="width:14px"></i> Behind the Scenes</div>
+          <h2>See How It's <span class="gradient-text">Made</span></h2>
+          <p>Step inside our Copenhagen workshop and watch master craftsmen at work.</p>
+        </div>
+        <div class="video-section reveal">
+          <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=1920&q=80"
+            alt="Workshop" />
+          <div class="video-overlay"></div>
+          <button class="play-btn"><i data-lucide="play" style="width:28px;margin-left:4px;"></i></button>
+          <div class="video-caption">
+            <h3>The Art of Joinery</h3>
+            <p>6 min · Copenhagen, Denmark</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §15 AWARDS & PRESS -->
+    <section class="section-pad" style="background:var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="trophy" style="width:14px"></i> Recognition</div>
+          <h2>Awards & <span class="gradient-text">Accolades</span></h2>
+          <p>Recognised by the world's leading design publications and industry bodies.</p>
+        </div>
+        <div class="awards-grid">
+          <div class="award-card reveal"><span class="award-icon">🏆</span>
+            <div class="award-year">2024</div>
+            <div class="award-name">Best Furniture Brand</div>
+            <div class="award-body">Elle Décor International Design Awards</div>
+          </div>
+          <div class="award-card reveal delay-1"><span class="award-icon">⭐</span>
+            <div class="award-year">2023</div>
+            <div class="award-name">Sustainable Design Leader</div>
+            <div class="award-body">GreenBuild Innovation Awards</div>
+          </div>
+          <div class="award-card reveal delay-2"><span class="award-icon">🎖️</span>
+            <div class="award-year">2023</div>
+            <div class="award-name">Customer Choice Award</div>
+            <div class="award-body">Trustpilot Excellence Awards</div>
+          </div>
+          <div class="award-card reveal delay-3"><span class="award-icon">🌿</span>
+            <div class="award-year">2022</div>
+            <div class="award-name">FSC Champion of the Year</div>
+            <div class="award-body">Forest Stewardship Council</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §16 GIFT CARDS -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="gift-grid">
+          <div class="reveal-left">
+            <div class="gift-card-preview">
+              <div class="gift-card-logo">Furnique</div>
+              <div class="gift-card-amount">$250</div>
+              <div class="gift-card-footer">
+                <div>
+                  <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:4px;">Pay anywhere with</div>
+                  <div style="font-size:14px;color:#fff;font-weight:600;">Furnique Gift Card</div>
+                </div>
+                <div class="gift-card-code">**** **** 7829</div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal-right">
+            <div class="tag"><i data-lucide="gift" style="width:14px"></i> Gift a Home</div>
+            <h2>Give the <span class="gradient-text">Gift of Design</span></h2>
+            <p style="font-size:16px;color:var(--text-muted);line-height:1.8;margin-bottom:24px;">A Furnique Gift Card
+              is the perfect present for housewarmings, weddings, or anyone who deserves a beautiful space.</p>
+            <ul style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+              <li style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-muted);"><i
+                  data-lucide="check-circle" style="width:18px;color:var(--sage)"></i> Available in $50 – $2,000
+                denominations</li>
+              <li style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-muted);"><i
+                  data-lucide="check-circle" style="width:18px;color:var(--sage)"></i> Never expires</li>
+              <li style="display:flex;align-items:center;gap:12px;font-size:14px;color:var(--text-muted);"><i
+                  data-lucide="check-circle" style="width:18px;color:var(--sage)"></i> Delivered by email, instantly
+              </li>
+            </ul>
+            <a href="#" class="btn-primary"><i data-lucide="gift" style="width:18px"></i> Buy a Gift Card</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §17 TRADE PROGRAM -->
+    <section class="section-pad" style="background:var(--bg-secondary); position: relative; overflow: hidden;">
+      <div style="position:absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 10% 20%, rgba(201, 123, 75, 0.03) 0%, transparent 40%); pointer-events: none;"></div>
+      <div class="container" style="position: relative; z-index: 1;">
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="briefcase" style="width:14px"></i> Trade Programme</div>
+          <h2>Are You a <span class="gradient-text">Design Professional?</span></h2>
+          <p>Join the Furnique Trade Programme for exclusive discounts, priority access, and dedicated support.</p>
+        </div>
+        <div class="trade-grid">
+          <div class="trade-card reveal">
+            <div class="trade-icon"><i data-lucide="percent"></i></div>
+            <h4>30% Trade Discount</h4>
+            <p>Exclusive pricing on our entire collection for registered interior designers and architects.</p>
+          </div>
+          <div class="trade-card featured reveal delay-1">
+            <div class="trade-icon"><i data-lucide="user-check"></i></div>
+            <h4>Dedicated Account Manager</h4>
+            <p>A personal contact for quotes, samples, and large-volume project support.</p>
+          </div>
+          <div class="trade-card reveal delay-2">
+            <div class="trade-icon"><i data-lucide="boxes"></i></div>
+            <h4>Sample Library Access</h4>
+            <p>Free fabric swatches and wood finish samples sent to your studio within 48 hours.</p>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:40px;">
+          <a href="contact.html" class="btn-primary">Apply to the Trade Programme <i data-lucide="arrow-right"
+              style="width:16px"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- §18 FAQ -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="help-circle" style="width:14px"></i> FAQ</div>
+          <h2>Common <span class="gradient-text">Questions</span></h2>
+          <p>Quick answers to help you shop with confidence.</p>
+        </div>
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFAQ(this)">What materials are your pieces made from? <span
+                class="faq-icon">+</span></button>
+            <div class="faq-a">
+              <p>We use solid oak, black walnut, and teak — all FSC-certified. Upholstery is available in Belgian
+                velvet, boucle, and linen in 40+ curated tones.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFAQ(this)">How does white-glove delivery work? <span
+                class="faq-icon">+</span></button>
+            <div class="faq-a">
+              <p>Our team delivers, assembles, and places every item exactly where you want it — and removes all
+                packaging. Included free on every order.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFAQ(this)">Can I see samples before I commit? <span
+                class="faq-icon">+</span></button>
+            <div class="faq-a">
+              <p>Yes — request free fabric swatches and wood finish samples to your home, or visit one of our showrooms
+                in New York, London, and Dubai.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFAQ(this)">Do you ship internationally? <span
+                class="faq-icon">+</span></button>
+            <div class="faq-a">
+              <p>Yes, we ship to 30+ countries worldwide. International shipping times and rates vary — please get in
+                touch for a personalised quote.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFAQ(this)">Is financing available? <span
+                class="faq-icon">+</span></button>
+            <div class="faq-a">
+              <p>Yes — 0% interest payment plans on orders over $1,000, available at checkout. Terms from 6–36 months.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- §19 NEWSLETTER (warm, organic style) -->
+    <section class="section-pad" style="background:var(--bg-secondary);">
+      <div class="container">
+        <div
+          style="background:linear-gradient(135deg,rgba(201,123,75,0.08),rgba(125,155,118,0.06));border:1px solid var(--border);border-radius:var(--radius-lg);padding:80px 60px;text-align:center;position:relative;overflow:hidden;"
+          class="reveal">
+          <div
+            style="position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,123,75,0.08),transparent);pointer-events:none;">
+          </div>
+          <div class="tag" style="margin-bottom:24px;"><i data-lucide="mail" style="width:14px"></i> Stay in the Loop
+          </div>
+          <h2 style="font-size:clamp(28px,4vw,50px);margin-bottom:14px;">Design Inspiration, <span
+              class="gradient-text">Every Week</span></h2>
+          <p style="color:var(--text-muted);font-size:16px;max-width:520px;margin:0 auto 36px;">Curated styling tips,
+            new arrivals, and exclusive deals — straight to your inbox. Unsubscribe any time.</p>
+          <form style="display:flex;gap:12px;max-width:500px;margin:0 auto;" onsubmit="return false;">
+            <input type="email" class="form-input" placeholder="Enter your email address" />
+            <button class="btn-primary" style="white-space:nowrap;">Subscribe <i data-lucide="arrow-right"
+                style="width:16px"></i></button>
+          </form>
+          <p style="font-size:12px;color:var(--text-muted);margin-top:16px;">No spam. Unsubscribe any time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- §20 FOOTER -->
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i data-lucide="armchair"></i></div><span
+            class="logo-text">Furni<span>que</span></span>
+        </a>
+        <p class="footer-desc">Handcrafted furniture for the modern home. Built to last, designed for life.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn"><i data-lucide="instagram" style="width:18px"></i></a>
+          <a href="#" class="social-btn"><i data-lucide="facebook" style="width:18px"></i></a>
+          <a href="#" class="social-btn"><i data-lucide="twitter" style="width:18px"></i></a>
+          <a href="#" class="social-btn"><i data-lucide="youtube" style="width:18px"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Collection</h5>
+        <ul>
+          <li><a href="#">Living Room</a></li>
+          <li><a href="#">Bedroom</a></li>
+          <li><a href="#">Dining</a></li>
+          <li><a href="#">Office</a></li>
+          <li><a href="#">Outdoor</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Trade Programme</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Help</h5>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Warranty</a></li>
+          <li><a href="#">Gift Cards</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Furnique. All rights reserved.</p>
+      <p>Privacy Policy · Terms of Service</p>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Header: solid on scroll shadow
+    const header = document.getElementById('mainHeader');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const i = document.getElementById('themeIcon');
+      i.setAttribute('data-lucide', document.body.classList.contains('dark') ? 'sun' : 'moon');
+      lucide.createIcons();
+    }
+    function toggleDir() { const h = document.documentElement; h.setAttribute('dir', h.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'); }
+    function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.getElementById('overlay').classList.add('open'); document.querySelectorAll('.mobile-sub').forEach(s => s.classList.remove('open')); }
+    function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
+    function toggleMobileSub(id, e) {
+      e.preventDefault();
+      const target = document.getElementById(id);
+      const isOpen = target.classList.contains('open');
+      document.querySelectorAll('.mobile-sub').forEach(s => s.classList.remove('open'));
+      if (!isOpen) target.classList.add('open');
+    }
+    function toggleHeaderDropdown(el, e) {
+      e.preventDefault(); e.stopPropagation();
+      const d = el.nextElementSibling;
+      document.querySelectorAll('.dropdown').forEach(dd => { if (dd !== d) dd.classList.remove('open'); });
+      d.classList.toggle('open');
+    }
+    window.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav > li')) {
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+      }
+    });
+    function toggleFAQ(btn) { btn.parentElement.classList.toggle('open'); }
+    const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => ro.observe(el));
+
+    // Countdown timer
+    let end = new Date(); end.setHours(end.getHours() + 9, end.getMinutes() + 24, end.getSeconds() + 38);
+    function updateTimer() {
+      const now = new Date(), diff = Math.max(0, end - now);
+      const h = Math.floor(diff / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('t-h').textContent = String(h).padStart(2, '0');
+      document.getElementById('t-m').textContent = String(m).padStart(2, '0');
+      document.getElementById('t-s').textContent = String(s).padStart(2, '0');
+    }
+    setInterval(updateTimer, 1000); updateTimer();
+  </script>
+</body>
+
+</html>

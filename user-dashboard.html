@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>User Dashboard | Furnique</title>
+  <meta name="description" content="Manage your Furnique orders, wishlist, and account settings." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23C97B4B'/><text x='50%25' y='65%25' text-anchor='middle' font-size='20' fill='white' font-family='serif'>F</text></svg>" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .product-thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      object-fit: cover;
+      background: var(--bg-secondary);
+    }
+
+    .order-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .wishlist-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .view-section {
+      display: none;
+      width: 100%;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile Overlay */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      animation: fIn 0.3s;
+    }
+
+    .sidebar-overlay.active {
+      display: block;
+    }
+
+    @keyframes fIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Charts */
+    .chart-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 180px;
+      padding-top: 20px;
+    }
+
+    .bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      height: 100%;
+      position: relative;
+    }
+
+    .bar {
+      width: 100%;
+      background: var(--accent);
+      border-radius: 6px 6px 0 0;
+      opacity: 0.7;
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .bar:hover {
+      opacity: 1;
+      transform: scaleX(1.1);
+    }
+
+    .bar.active {
+      opacity: 1;
+      background: var(--accent);
+    }
+
+    .bar-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .info-graphic {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      background: var(--bg-secondary);
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      color: var(--accent);
+    }
+
+    .sidebar-close {
+      display: none;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar.active ~ .menu-toggle {
+        display: none !important;
+      }
+
+      .sidebar-close {
+        display: flex;
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text-primary);
+        cursor: pointer;
+      }
+
+      [dir="rtl"] .sidebar-close {
+        right: auto;
+        left: 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .wishlist-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .chart-container {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wishlist-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="no-header">
+
+
+
+  <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <button class="sidebar-close" onclick="toggleSidebar()"><i data-lucide="x"></i></button>
+      <div class="sidebar-brand"
+        style="padding: 24px 0 40px; border-bottom: 1px solid var(--border); margin-bottom: 24px;">
+        <a href="index.html" class="logo" style="justify-content: center;">
+          <div class="logo-icon"><i data-lucide="armchair"></i></div><span
+            class="logo-text">Furni<span>que</span></span>
+        </a>
+      </div>
+
+      <div class="sidebar-section-label">User Dashboard</div>
+      <a href="javascript:void(0)" onclick="switchView('dashboard', this)" class="sidebar-link active"><i
+          data-lucide="layout-dashboard"></i> Dashboard</a>
+      <a href="javascript:void(0)" onclick="switchView('orders', this)" class="sidebar-link"><i
+          data-lucide="package"></i> My Orders</a>
+      <a href="javascript:void(0)" onclick="switchView('wishlist', this)" class="sidebar-link"><i
+          data-lucide="heart"></i> Wishlist</a>
+      <a href="javascript:void(0)" onclick="switchView('addresses', this)" class="sidebar-link"><i
+          data-lucide="map-pin"></i> Addresses</a>
+
+      <div class="sidebar-section-label">Preferences</div>
+      <a href="javascript:void(0)" onclick="switchView('profile', this)" class="sidebar-link"><i data-lucide="user"></i>
+        Profile Settings</a>
+      <a href="javascript:void(0)" onclick="switchView('security', this)" class="sidebar-link"><i
+          data-lucide="shield"></i> Password & Security</a>
+      <a href="javascript:void(0)" onclick="switchView('notifications', this)" class="sidebar-link"><i
+          data-lucide="bell"></i> Notifications</a>
+
+      <div class="sidebar-section-label">More</div>
+      <a href="admin-dashboard.html" class="sidebar-link"><i data-lucide="settings"></i> Admin Dashboard</a>
+      <a href="login.html" class="sidebar-link" style="color:#E05C5C;"><i data-lucide="log-out"></i> Logout</a>
+      <div
+        style="margin-top:auto; padding-top:24px; display:flex; justify-content:center; gap:12px; border-top:1px solid var(--border);">
+        <button onclick="toggleDir()" title="Toggle RTL/LTR"
+          style="background:var(--bg-secondary); border:1px solid var(--border); width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; color:var(--text-primary); cursor:pointer;"><i
+            data-lucide="globe" style="width:18px"></i></button>
+        <button onclick="toggleTheme()" title="Toggle Theme"
+          style="background:var(--bg-secondary); border:1px solid var(--border); width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; color:var(--text-primary); cursor:pointer;"><i
+            data-lucide="moon" id="themeIcon" style="width:18px"></i></button>
+      </div>
+    </aside>
+
+    <button class="menu-toggle" style="display:none;" onclick="toggleSidebar()"><i data-lucide="menu"></i></button>
+
+    <main class="dashboard-content">
+      <!-- VIEW: DASHBOARD -->
+      <section id="view-dashboard" class="view-section active">
+        <div class="page-header">
+          <h1>Good morning, <span class="gradient-text">Alexandra</span> 👋</h1>
+          <p>Welcome back to your Furnique dashboard. Here's a snapshot of your activity.</p>
+        </div>
+
+        <div class="dash-stat-grid">
+          <div class="dash-stat-card reveal">
+            <div class="dash-stat-icon"><i data-lucide="package"></i></div>
+            <div class="dash-stat-num">7</div>
+            <div class="dash-stat-label">Total Orders</div>
+            <div class="dash-stat-change">↑ 2 this month</div>
+          </div>
+          <div class="dash-stat-card reveal delay-1">
+            <div class="dash-stat-icon" style="background:rgba(125,155,118,0.1);color:var(--sage);"><i
+                data-lucide="heart"></i></div>
+            <div class="dash-stat-num">14</div>
+            <div class="dash-stat-label">Wishlist Items</div>
+            <div class="dash-stat-change" style="color:var(--sage);">3 on sale now</div>
+          </div>
+          <div class="dash-stat-card reveal delay-2">
+            <div class="dash-stat-icon" style="background:rgba(45,58,94,0.1);color:var(--navy);"><i
+                data-lucide="tag"></i></div>
+            <div class="dash-stat-num">$280</div>
+            <div class="dash-stat-label">Rewards Saved</div>
+            <div class="dash-stat-change">Premium Member</div>
+          </div>
+          <div class="dash-stat-card reveal delay-3">
+            <div class="dash-stat-icon" style="background:rgba(224,92,92,0.1);color:#E05C5C;"><i data-lucide="star"></i>
+            </div>
+            <div class="dash-stat-num">4.9</div>
+            <div class="dash-stat-label">Reviews Given</div>
+            <div class="dash-stat-change" style="color:#E05C5C;">12 reviews</div>
+          </div>
+        </div>
+
+        <!-- NEW DASHBOARD CHARTS GRID -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:24px;">
+          <div class="chart-container reveal">
+            <div class="chart-header">
+              <h5>Activity Level</h5><span>Last 7 Days</span>
+            </div>
+            <div class="bar-chart" style="height:120px;">
+              <div class="bar-col">
+                <div class="bar" style="height:40%;"></div><span class="bar-label">S</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:65%;"></div><span class="bar-label">M</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:50%;"></div><span class="bar-label">T</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:85%;"></div><span class="bar-label">W</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:40%;"></div><span class="bar-label">T</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:70%;"></div><span class="bar-label">F</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar active" style="height:100%;"></div><span class="bar-label">S</span>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container reveal delay-1">
+            <div class="chart-header">
+              <h5>Rewards Milestone</h5><span>Tier 2 Upgrade</span>
+            </div>
+            <div style="padding-top:10px;">
+              <div
+                style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:12px; font-weight:700;">
+                <span>Progress</span><span>72%</span></div>
+              <div
+                style="height:12px; background:var(--bg-secondary); border-radius:50px; overflow:hidden; border:1px solid var(--border);">
+                <div style="width:72%; height:100%; background:linear-gradient(90deg, var(--accent), var(--sage));">
+                </div>
+              </div>
+              <p style="font-size:12px; color:var(--text-muted); margin-top:12px;"><i data-lucide="sparkles"
+                  style="width:12px; vertical-align:middle;"></i> Spend $120 more to reach <strong>Gold Status</strong>.
+              </p>
+            </div>
+          </div>
+          <div class="chart-container reveal delay-2">
+            <div class="chart-header">
+              <h5>Top Interests</h5><span>Viewing Habits</span>
+            </div>
+            <div style="display:grid; gap:12px;">
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Modern
+                  Minimalist</span><span>48%</span></div>
+              <div style="height:6px; background:var(--bg-secondary); border-radius:10px;">
+                <div style="width:48%; height:100%; background:var(--accent);"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Industrial
+                  Loft</span><span>32%</span></div>
+              <div style="height:6px; background:var(--bg-secondary); border-radius:10px;">
+                <div style="width:32%; height:100%; background:var(--navy);"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span>Classic
+                  Italian</span><span>20%</span></div>
+              <div style="height:6px; background:var(--bg-secondary); border-radius:10px;">
+                <div style="width:20%; height:100%; background:var(--sage);"></div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container reveal delay-3">
+            <div class="chart-header">
+              <h5>Security Health</h5><span>Account Standing</span>
+            </div>
+            <div
+              style="display:flex; align-items:center; gap:15px; background:var(--bg-secondary); padding:12px; border-radius:12px;">
+              <div
+                style="width:50px; height:50px; border-radius:50%; border:3px solid var(--accent); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <i data-lucide="check" style="color:var(--accent);"></i></div>
+              <div>
+                <div style="font-weight:700; font-size:14px;">Excellent</div>
+                <div style="font-size:11px; color:var(--text-muted);">2FA is active, no leaks detected.</div>
+              </div>
+            </div>
+            <div style="margin-top:15px; font-size:11px; color:var(--accent); font-weight:600; cursor:pointer;">Run Deep
+              Security Scan →</div>
+          </div>
+        </div>
+
+        <div class="dash-card reveal">
+          <div class="dash-card-header">
+            <h2 class="dash-card-title">Recent <span class="gradient-text">Orders</span></h2>
+            <a href="javascript:void(0)" onclick="switchView('orders')" class="btn-outline"
+              style="font-size:13px;padding:8px 20px;">View All</a>
+          </div>
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="display:flex;align-items:center;gap:12px;"><img class="product-thumb"
+                    src="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=56&h=56&q=80" />
+                  Velvet Cloud Sofa</td>
+                <td style="color:var(--text-muted);">#FRN-00421</td>
+                <td style="color:var(--text-muted);">Mar 12, 2025</td>
+                <td><strong>$1,299</strong></td>
+                <td><span class="status-badge delivered">Delivered</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- VIEW: ORDERS -->
+      <section id="view-orders" class="view-section">
+        <div class="page-header">
+          <h1>My <span class="gradient-text">Orders</span></h1>
+          <p>Track your purchases, view historical spending, and manage your subscriptions.</p>
+        </div>
+
+        <div class="dash-stat-grid" style="margin-bottom:24px;">
+          <div class="dash-stat-card">
+            <div class="dash-stat-num">12</div>
+            <div class="dash-stat-label">Total Orders</div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="dash-stat-num">$8,240</div>
+            <div class="dash-stat-label">Lifetime Spend</div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="dash-stat-num">450</div>
+            <div class="dash-stat-label">Reward Points</div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="dash-stat-num">2</div>
+            <div class="dash-stat-label">Active Subs</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1.5fr 1fr; gap:24px; margin-bottom:24px;">
+          <div class="chart-container">
+            <div class="chart-header">
+              <h5>Annual Spending</h5><span>Total: $5,240</span>
+            </div>
+            <div class="bar-chart">
+              <div class="bar-col">
+                <div class="bar" style="height:40%;"></div><span class="bar-label">Oct</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:60%;"></div><span class="bar-label">Nov</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:90%;"></div><span class="bar-label">Dec</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:45%;"></div><span class="bar-label">Jan</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:55%;"></div><span class="bar-label">Feb</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar active" style="height:100%;"></div><span class="bar-label">Mar</span>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <div class="chart-header">
+              <h5>Orders by Type</h5>
+            </div>
+            <div style="display:grid; gap:16px; margin-top:10px;">
+              <div style="display:flex; justify-content:space-between; font-size:12px;">
+                <span>Furniture</span><span>65%</span></div>
+              <div style="height:6px; background:var(--bg-secondary); border-radius:50px;">
+                <div style="width:65%; height:100%; background:var(--accent);"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;">
+                <span>Decor</span><span>25%</span></div>
+              <div style="height:6px; background:var(--bg-secondary); border-radius:50px;">
+                <div style="width:25%; height:100%; background:var(--sage);"></div>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;">
+                <span>Lighting</span><span>10%</span></div>
+              <div style="height:6px; background:var(--bg-secondary); border-radius:50px;">
+                <div style="width:10%; height:100%; background:var(--navy);"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-card reveal">
+          <div class="dash-card-header">
+            <h2 class="dash-card-title">Order <span class="gradient-text">History</span></h2>
+          </div>
+          <table class="dash-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="display:flex;align-items:center;gap:12px;"><img class="product-thumb"
+                    src="https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=56&h=56&q=80" />
+                  Velvet Cloud Sofa</td>
+                <td style="color:var(--text-muted);">#FRN-00421</td>
+                <td style="color:var(--text-muted);">Mar 12, 2025</td>
+                <td><strong>$1,299</strong></td>
+                <td><span class="status-badge delivered">Delivered</span></td>
+              </tr>
+              <tr>
+                <td style="display:flex;align-items:center;gap:12px;"><img class="product-thumb"
+                    src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=56&h=56&q=80" />
+                  Oak Bed Frame</td>
+                <td style="color:var(--text-muted);">#FRN-00398</td>
+                <td style="color:var(--text-muted);">Feb 28, 2025</td>
+                <td><strong>$1,850</strong></td>
+                <td><span class="status-badge pending">In Transit</span></td>
+              </tr>
+              <tr>
+                <td style="display:flex;align-items:center;gap:12px;"><img class="product-thumb"
+                    src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=56&h=56&q=80" />
+                  Walnut Table</td>
+                <td style="color:var(--text-muted);">#FRN-00372</td>
+                <td style="color:var(--text-muted);">Jan 14, 2025</td>
+                <td><strong>$920</strong></td>
+                <td><span class="status-badge delivered">Delivered</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- VIEW: WISHLIST -->
+      <section id="view-wishlist" class="view-section">
+        <div class="page-header">
+          <h1>My <span class="gradient-text">Wishlist</span></h1>
+          <p>Keep track of your favorite pieces and get notified of price changes.</p>
+        </div>
+        <div class="dash-stat-grid" style="margin-bottom:24px;">
+          <div class="dash-stat-card">
+            <div class="dash-stat-num">14</div>
+            <div class="dash-stat-label">Items Saved</div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="dash-stat-num">$8,420</div>
+            <div class="dash-stat-label">Total Value</div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="dash-stat-num">3</div>
+            <div class="dash-stat-label">Price Drops</div>
+          </div>
+          <div class="dash-stat-card">
+            <div class="dash-stat-num">$1,250</div>
+            <div class="dash-stat-label">Est. Savings</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-bottom:24px;">
+          <div class="chart-container">
+            <div class="chart-header">
+              <h5>Item Growth</h5>
+            </div>
+            <div class="bar-chart" style="height:140px;">
+              <div class="bar-col">
+                <div class="bar" style="height:30%;"></div><span class="bar-label">W1</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:45%;"></div><span class="bar-label">W2</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar" style="height:75%;"></div><span class="bar-label">W3</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar active" style="height:100%;"></div><span class="bar-label">W4</span>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container">
+            <div class="chart-header">
+              <h5>Wishlist Health</h5>
+            </div>
+            <div style="padding:10px 0;">
+              <div class="info-graphic">
+                <div class="info-icon" style="color:var(--accent);"><i data-lucide="trending-down"></i></div>
+                <div>
+                  <div style="font-weight:700;">3 items at all-time low</div>
+                  <div style="font-size:12px; color:var(--text-muted);">Perfect time to purchase.</div>
+                </div>
+              </div>
+              <div class="info-graphic">
+                <div class="info-icon" style="color:var(--sage);"><i data-lucide="clock"></i></div>
+                <div>
+                  <div style="font-weight:700;">5 items low in stock</div>
+                  <div style="font-size:12px; color:var(--text-muted);">Usually ships in 2 days.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wishlist-grid">
+          <div class="product-card">
+            <div class="product-img"><img
+                src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=400&q=80" /><span
+                class="product-badge new">New</span></div>
+            <div class="product-info">
+              <div class="product-cat">Living Room</div>
+              <h3 class="product-name">Boucle Accent Chair</h3>
+              <div class="product-footer"><span class="product-price">$449</span><button class="btn-add-cart"><i
+                    data-lucide="shopping-bag"></i></button></div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img"><img
+                src="https://images.unsplash.com/photo-1549187774-b4e9b0445b41?auto=format&fit=crop&w=400&q=80" /></div>
+            <div class="product-info">
+              <div class="product-cat">Living Room</div>
+              <h3 class="product-name">Marble Coffee Table</h3>
+              <div class="product-footer"><span class="product-price">$780</span><button class="btn-add-cart"><i
+                    data-lucide="shopping-bag"></i></button></div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img"><img
+                src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=400&q=80" /><span
+                class="product-badge sale">-15%</span></div>
+            <div class="product-info">
+              <div class="product-cat">Bedroom</div>
+              <h3 class="product-name">Pine Wood Dresser</h3>
+              <div class="product-footer">
+                <div><span class="product-price">$952</span><span class="product-price-old">$1,120</span></div><button
+                  class="btn-add-cart"><i data-lucide="shopping-bag"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-img"><img
+                src="https://images.unsplash.com/photo-1581412003800-449e25e9858f?auto=format&fit=crop&w=400&q=80" />
+            </div>
+            <div class="product-info">
+              <div class="product-cat">Office</div>
+              <h3 class="product-name">Leather Task Chair</h3>
+              <div class="product-footer"><span class="product-price">$320</span><button class="btn-add-cart"><i
+                    data-lucide="shopping-bag"></i></button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: ADDRESSES -->
+      <section id="view-addresses" class="view-section">
+        <div class="page-header">
+          <h1>Saved <span class="gradient-text">Addresses</span></h1>
+          <p>Manage your delivery locations and primary billing address.</p>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+          <div class="dash-card" style="border:2px solid var(--accent);">
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px;"><span
+                class="tag">Primary</span><i data-lucide="edit-3" style="width:16px; cursor:pointer;"></i></div>
+            <h5 style="margin-bottom:8px;">Home (Main)</h5>
+            <p style="font-size:14px; color:var(--text-muted);">14 Design Avenue, Soho<br />New York, NY
+              10012<br />United States</p>
+          </div>
+          <div class="dash-card">
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px;"><span class="tag"
+                style="background:var(--bg-secondary); color:var(--text-muted);">Secondary</span><i data-lucide="edit-3"
+                style="width:16px; cursor:pointer;"></i></div>
+            <h5 style="margin-bottom:8px;">Office</h5>
+            <p style="font-size:14px; color:var(--text-muted);">88 Innovation Sq, Floor 4<br />Brooklyn, NY
+              11201<br />United States</p>
+          </div>
+        </div>
+        <div class="chart-container" style="margin-top:24px;">
+          <div class="chart-header">
+            <h5>Delivery Reach</h5><span>Global Express</span>
+          </div>
+          <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:16px;">
+            <div style="text-align:center;">
+              <div style="font-size:24px; font-weight:700; color:var(--accent);">2</div>
+              <div style="font-size:11px; color:var(--text-muted);">Continents</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:24px; font-weight:700; color:var(--accent);">42</div>
+              <div style="font-size:11px; color:var(--text-muted);">Deliveries</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:24px; font-weight:700; color:var(--accent);">100%</div>
+              <div style="font-size:11px; color:var(--text-muted);">Secure</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-size:24px; font-weight:700; color:var(--accent);">0</div>
+              <div style="font-size:11px; color:var(--text-muted);">Lost</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: PROFILE -->
+      <section id="view-profile" class="view-section">
+        <div class="page-header">
+          <h1>Profile <span class="gradient-text">Settings</span></h1>
+          <p>Update your personal information and profile picture.</p>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 2fr; gap:40px;">
+          <div style="text-align:center;">
+            <div
+              style="width:120px; height:120px; border-radius:50%; background:var(--bg-secondary); border:4px solid var(--accent); margin:0 auto 20px; overflow:hidden;">
+              <img src="https://i.pravatar.cc/120?img=3" style="width:100%; height:100%; object-fit:cover;" />
+            </div>
+            <button class="btn-outline" style="font-size:12px; padding:8px 16px;">Change Photo</button>
+            <div style="margin-top:30px;">
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:8px;">
+                <span>Completion</span><span>85%</span></div>
+              <div style="height:8px; background:var(--bg-secondary); border-radius:10px; overflow:hidden;">
+                <div style="width:85%; height:100%; background:var(--accent);"></div>
+              </div>
+            </div>
+          </div>
+          <div class="dash-card">
+            <form style="display:grid; gap:20px;">
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                <div><label style="display:block; font-size:12px; margin-bottom:8px; font-weight:600;">First
+                    Name</label><input type="text" value="Alexandra"
+                    style="width:100%; padding:12px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; color:var(--text-primary);" />
+                </div>
+                <div><label style="display:block; font-size:12px; margin-bottom:8px; font-weight:600;">Last
+                    Name</label><input type="text" value="Rivera"
+                    style="width:100%; padding:12px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; color:var(--text-primary);" />
+                </div>
+              </div>
+              <div><label style="display:block; font-size:12px; margin-bottom:8px; font-weight:600;">Email
+                  Address</label><input type="email" value="alex.rivera@email.com"
+                  style="width:100%; padding:12px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; color:var(--text-primary);" />
+              </div>
+              <button class="btn-primary" style="width:fit-content; margin-top:10px;">Save Profile</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: SECURITY -->
+      <section id="view-security" class="view-section">
+        <div class="page-header">
+          <h1>Password & <span class="gradient-text">Security</span></h1>
+          <p>Protect your account with modern security standards.</p>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+          <div class="dash-card">
+            <div class="info-graphic">
+              <div class="info-icon" style="color:#2ECC71;"><i data-lucide="shield-check"></i></div>
+              <div>
+                <div style="font-weight:700;">Account Secure</div>
+                <div style="font-size:12px;color:var(--text-muted);">Last check: 2 hours ago</div>
+              </div>
+            </div>
+            <div class="info-graphic">
+              <div class="info-icon" style="color:var(--accent);"><i data-lucide="fingerprint"></i></div>
+              <div>
+                <div style="font-weight:700;">2FA Enabled</div>
+                <div style="font-size:12px;color:var(--text-muted);">VIA Google Authenticator</div>
+              </div>
+            </div>
+            <div class="info-graphic">
+              <div class="info-icon"><i data-lucide="smartphone"></i></div>
+              <div>
+                <div style="font-weight:700;">Authorized Devices</div>
+                <div style="font-size:12px;color:var(--text-muted);">3 Active Sessions</div>
+              </div>
+            </div>
+          </div>
+          <div class="dash-card">
+            <h2 class="dash-card-title">Update Password</h2>
+            <form style="display:grid; gap:16px; margin-top:20px;">
+              <input type="password" placeholder="Current Password"
+                style="width:100%; padding:12px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; color:var(--text-primary);" />
+              <input type="password" placeholder="New Password"
+                style="width:100%; padding:12px; background:var(--bg-secondary); border:1px solid var(--border); border-radius:8px; color:var(--text-primary);" />
+              <button class="btn-outline" style="width:fit-content;">Update</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW: NOTIFICATIONS -->
+      <section id="view-notifications" class="view-section">
+        <div class="page-header">
+          <h1>Your <span class="gradient-text">Notifications</span></h1>
+          <p>Stay updated with order alerts and exclusive offers.</p>
+        </div>
+        <div class="dash-card">
+          <div class="info-graphic"
+            style="background:transparent; border-bottom:1px solid var(--border); border-radius:0; padding:20px 0;">
+            <div class="info-icon"><i data-lucide="bell"></i></div>
+            <div style="flex:1;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span
+                  style="font-weight:700;">Order Shipped!</span><span
+                  style="font-size:11px; color:var(--text-muted);">10m ago</span></div>
+              <div style="font-size:13px; color:var(--text-muted);">Your Velvet Cloud Sofa is now on its way to New
+                York.</div>
+            </div>
+          </div>
+          <div class="info-graphic"
+            style="background:transparent; border-bottom:1px solid var(--border); border-radius:0; padding:20px 0;">
+            <div class="info-icon" style="color:var(--sage);"><i data-lucide="tag"></i></div>
+            <div style="flex:1;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;"><span
+                  style="font-weight:700;">Flash Sale!</span><span style="font-size:11px; color:var(--text-muted);">4h
+                  ago</span></div>
+              <div style="font-size:13px; color:var(--text-muted);">20% off all dining tables this weekend only. Don't
+                miss out.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    function toggleTheme() { document.body.classList.toggle('dark'); const i = document.getElementById('themeIcon'); i.setAttribute('data-lucide', document.body.classList.contains('dark') ? 'sun' : 'moon'); lucide.createIcons(); }
+    function toggleDir() { const h = document.documentElement; h.setAttribute('dir', h.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'); }
+
+    function switchView(viewId, el) {
+      document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+      document.getElementById('view-' + viewId).classList.add('active');
+      if (el) {
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        el.classList.add('active');
+      }
+      if (window.innerWidth <= 1024) toggleSidebar();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleSidebar() {
+      const s = document.querySelector('.sidebar');
+      const o = document.querySelector('.sidebar-overlay');
+      s.classList.toggle('active');
+      o.classList.toggle('active');
+    }
+
+    const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => ro.observe(el));
+
+  </script>
+</body>
+
+</html>

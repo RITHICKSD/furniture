@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>About Us | Furnique Premium Furniture</title>
+  <meta name="description" content="Learn the story behind Furnique — 15 years of handcrafted furniture, design passion, and commitment to your dream home." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23C97B4B'/><text x='50%25' y='65%25' text-anchor='middle' font-size='20' fill='white' font-family='serif'>F</text></svg>" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="overlay" id="overlay" onclick="closeMobileNav()"></div>
+
+  <nav class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header" style="height: 60px;">
+      <button class="mobile-nav-close" onclick="closeMobileNav()"><i data-lucide="x"></i></button>
+    </div>
+    <ul>
+      <li><a href="#" onclick="toggleMobileSub('mHome',event)">Home <i data-lucide="chevron-down"></i></a>
+        <ul class="mobile-sub" id="mHome"><li><a href="index.html">Home 1</a></li><li><a href="home2.html">Home 2</a></li></ul></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#" onclick="toggleMobileSub('mDash',event)">Dashboard <i data-lucide="chevron-down"></i></a>
+        <ul class="mobile-sub" id="mDash">
+          <li><a href="user-dashboard.html">User Dashboard</a></li>
+          <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+        </ul>
+      </li>
+    </ul>
+    <a href="login.html" class="mobile-shop-btn">Login</a>
+  </nav>
+
+  <header class="header" id="mainHeader">
+    <a href="index.html" class="logo">
+      <div class="logo-icon"><i data-lucide="armchair"></i></div>
+      <span class="logo-text">Furni<span>que</span></span>
+    </a>
+    <ul class="nav">
+      <li><a href="#" onclick="toggleHeaderDropdown(this, event)">Home <i data-lucide="chevron-down"></i></a>
+        <div class="dropdown"><a href="index.html">Home 1</a><a href="home2.html">Home 2</a></div></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li>
+        <a href="#" onclick="toggleHeaderDropdown(this, event)">Dashboard <i data-lucide="chevron-down"></i></a>
+        <div class="dropdown">
+          <a href="user-dashboard.html">User Dashboard</a>
+          <a href="admin-dashboard.html">Admin Dashboard</a>
+        </div>
+      </li>
+    </ul>
+    <div class="header-right">
+      <button class="btn-theme" onclick="toggleDir()" title="Toggle RTL/LTR"><i data-lucide="globe"></i></button>
+      <button class="btn-theme" onclick="toggleTheme()"><i data-lucide="moon" id="themeIcon"></i></button>
+      <a href="login.html" class="btn-shop-now">Login</a>
+      <button class="hamburger" onclick="openMobileNav()"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero-inner-page hero-about">
+      <div class="hero-page-orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(201,123,75,0.15),transparent);top:-100px;right:-100px;"></div>
+      <div class="hero-page-orb" style="width:300px;height:300px;background:radial-gradient(circle,rgba(125,155,118,0.1),transparent);bottom:-50px;left:5%;"></div>
+      <div class="hero-page-content reveal">
+        <h1>Our <span class="gradient-text">Story</span></h1>
+        <p>15 years of passion, precision, and a love for beautiful spaces.</p>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="feature-split">
+          <div class="feature-img reveal-left">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Our Workshop" />
+          </div>
+          <div class="feature-content reveal-right">
+            <div class="tag"><i data-lucide="heart" style="width:14px"></i> Our Mission</div>
+            <h2>Crafting Spaces That <span class="gradient-text">Feel Like Home</span></h2>
+            <p>Founded in 2010 in Copenhagen, Furnique was born from a simple belief: every home deserves furniture that tells its owner's unique story. We partner with master craftsmen across Scandinavia and Southeast Asia to bring you pieces that are as durable as they are beautiful.</p>
+            <p style="margin-top: 16px; font-size: 16px; color: var(--text-muted); line-height: 1.8;">Today, we serve over 12,000 families across 30 countries — each one with a home they're proud to show off.</p>
+            <div style="margin-top: 40px;">
+              <a href="contact.html" class="btn-primary">Get in Touch <i data-lucide="arrow-right" style="width:16px"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section-pad" style="background:var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="diamond" style="width:14px"></i> What We Stand For</div>
+          <h2>Our Core <span class="gradient-text">Values</span></h2>
+          <p>The principles that guide every piece we craft and every relationship we build.</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="value-icon"><i data-lucide="leaf"></i></div>
+            <h4>Sustainability</h4>
+            <p>We source only from certified sustainable forests and use eco-friendly finishes across our entire range.</p>
+          </div>
+          <div class="value-card reveal delay-1">
+            <div class="value-icon"><i data-lucide="gem"></i></div>
+            <h4>Quality First</h4>
+            <p>Every joint, every finish, every fabric is selected for lifetime durability and aesthetic excellence.</p>
+          </div>
+          <div class="value-card reveal delay-2">
+            <div class="value-icon"><i data-lucide="users"></i></div>
+            <h4>Customer Focus</h4>
+            <p>From consultation to delivery, we're with you every step — because your satisfaction is our success.</p>
+          </div>
+          <div class="value-card reveal delay-3">
+            <div class="value-icon"><i data-lucide="paintbrush"></i></div>
+            <h4>Design Excellence</h4>
+            <p>Our in-house design team pushes the boundaries of form and function every single season.</p>
+          </div>
+          <div class="value-card reveal delay-4">
+            <div class="value-icon"><i data-lucide="shield-check"></i></div>
+            <h4>Trust & Integrity</h4>
+            <p>We stand behind every piece with a 10-year warranty and transparent business practices.</p>
+          </div>
+          <div class="value-card reveal" style="transition-delay: 0.75s">
+            <div class="value-icon"><i data-lucide="globe"></i></div>
+            <h4>Global Reach</h4>
+            <p>Serving 30+ countries with the same level of craft and care, no matter where you call home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stats-inner">
+        <div class="stat-item reveal"><span class="stat-num">2010</span><div class="stat-label">Founded</div></div>
+        <div class="stat-item reveal delay-1"><span class="stat-num">12K+</span><div class="stat-label">Happy Customers</div></div>
+        <div class="stat-item reveal delay-2"><span class="stat-num">30+</span><div class="stat-label">Countries Served</div></div>
+        <div class="stat-item reveal delay-3"><span class="stat-num">150+</span><div class="stat-label">Craftsmen</div></div>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="users" style="width:14px"></i> Meet the Team</div>
+          <h2>The <span class="gradient-text">Makers</span> Behind the Magic</h2>
+          <p>A passionate team of designers, craftsmen, and customer advocates.</p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card reveal">
+            <div class="team-img"><img src="https://i.pravatar.cc/300?img=11" alt="CEO" /></div>
+            <div class="team-info">
+              <h4>Erik Lindqvist</h4>
+              <p>Founder & CEO</p>
+            </div>
+          </div>
+          <div class="team-card reveal delay-1">
+            <div class="team-img"><img src="https://i.pravatar.cc/300?img=5" alt="Design Lead" /></div>
+            <div class="team-info">
+              <h4>Amara Osei</h4>
+              <p>Head of Design</p>
+            </div>
+          </div>
+          <div class="team-card reveal delay-2">
+            <div class="team-img"><img src="https://i.pravatar.cc/300?img=15" alt="Operations" /></div>
+            <div class="team-info">
+              <h4>Marco Vitelli</h4>
+              <p>Operations Director</p>
+            </div>
+          </div>
+          <div class="team-card reveal delay-3">
+            <div class="team-img"><img src="https://i.pravatar.cc/300?img=20" alt="Customer Success" /></div>
+            <div class="team-info">
+              <h4>Sofia Andrade</h4>
+              <p>Customer Experience Lead</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-pad" style="background:var(--bg-secondary)">
+      <div class="container">
+        <div class="newsletter-box reveal">
+          <h2>Ready to Transform <span style="font-style:italic">Your Home?</span></h2>
+          <p>Book a free design consultation and let our experts help you craft the perfect space.</p>
+          <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
+            <a href="contact.html" class="btn-primary" style="background:#fff;color:var(--accent)">Book Consultation <i data-lucide="calendar" style="width:16px"></i></a>
+            <a href="index.html" class="btn-primary" style="background:rgba(255,255,255,0.15)">Explore Shop <i data-lucide="arrow-right" style="width:16px"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><div class="logo-icon"><i data-lucide="armchair"></i></div><span class="logo-text">Furni<span>que</span></span></a>
+        <p class="footer-desc">Handcrafted furniture for the modern home. Built to last, designed to inspire.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn"><i data-lucide="instagram" style="width:18px"></i></a>
+          <a href="#" class="social-btn"><i data-lucide="facebook" style="width:18px"></i></a>
+          <a href="#" class="social-btn"><i data-lucide="twitter" style="width:18px"></i></a>
+          <a href="#" class="social-btn"><i data-lucide="youtube" style="width:18px"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Shop</h5><ul><li><a href="#">Living Room</a></li><li><a href="#">Bedroom</a></li><li><a href="#">Dining Room</a></li><li><a href="#">Home Office</a></li><li><a href="#">Outdoor</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html" class="active">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul></div>
+      <div class="footer-col"><h5>Support</h5><ul><li><a href="#">FAQ</a></li><li><a href="#">Shipping Policy</a></li><li><a href="#">Return Policy</a></li><li><a href="#">Track Order</a></li><li><a href="#">Warranty</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Furnique. All rights reserved.</p><p>Privacy Policy · Terms of Service</p></div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    window.addEventListener('scroll', () => document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 50));
+    function toggleTheme() { document.body.classList.toggle('dark'); const i = document.getElementById('themeIcon'); i.setAttribute('data-lucide', document.body.classList.contains('dark') ? 'sun' : 'moon'); lucide.createIcons(); }
+    function toggleDir() { const h = document.documentElement; h.setAttribute('dir', h.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'); }
+    function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.getElementById('overlay').classList.add('open'); document.querySelectorAll('.mobile-sub').forEach(s => s.classList.remove('open')); }
+    function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
+    function toggleMobileSub(id, e) { e.preventDefault(); document.getElementById(id).classList.toggle('open'); }
+    function toggleHeaderDropdown(el, e) {
+      e.preventDefault(); e.stopPropagation();
+      const d = el.nextElementSibling;
+      document.querySelectorAll('.dropdown').forEach(dd => { if (dd !== d) dd.classList.remove('open'); });
+      d.classList.toggle('open');
+    }
+    window.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav > li')) {
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+      }
+    });
+    const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => ro.observe(el));
+  </script>
+</body>
+</html>
