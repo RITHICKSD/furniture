@@ -441,23 +441,42 @@ h5 {
   transition: all var(--transition);
 }
 
-/* Theme Toggle */
-.btn-theme {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+/* Toggles (Theme & Lang) */
+.btn-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   border: 1px solid var(--border);
-  background: transparent;
+  background: var(--bg-card);
   color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all var(--transition);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-theme:hover {
+.btn-toggle:hover {
   border-color: var(--accent);
   color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn-toggle i {
+  width: 18px;
+  height: 18px;
+}
+
+/* Ensure language toggle text fits nicely */
+#lang-toggle-text {
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.5px;
 }
 
 /* ── Mobile Nav ─────────────────────────────────── */

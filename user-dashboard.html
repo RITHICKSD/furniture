@@ -253,12 +253,12 @@
       <a href="login.html" class="sidebar-link" style="color:#E05C5C;"><i data-lucide="log-out"></i> Logout</a>
       <div
         style="margin-top:auto; padding-top:24px; display:flex; justify-content:center; gap:12px; border-top:1px solid var(--border);">
-        <button onclick="toggleDir()" title="Toggle RTL/LTR"
-          style="background:var(--bg-secondary); border:1px solid var(--border); width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; color:var(--text-primary); cursor:pointer;"><i
-            data-lucide="globe" style="width:18px"></i></button>
-        <button onclick="toggleTheme()" title="Toggle Theme"
-          style="background:var(--bg-secondary); border:1px solid var(--border); width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; color:var(--text-primary); cursor:pointer;"><i
-            data-lucide="moon" id="themeIcon" style="width:18px"></i></button>
+        <button class="btn-toggle" onclick="toggleDir()" title="Toggle RTL/LTR">
+          <span id="lang-toggle-text">LTR</span>
+        </button>
+        <button class="btn-toggle" onclick="toggleTheme()" title="Toggle Theme">
+          <i data-lucide="moon" id="themeIcon"></i>
+        </button>
       </div>
     </aside>
 
@@ -830,33 +830,7 @@
     </main>
   </div>
 
-  <script>
-    lucide.createIcons();
-    function toggleTheme() { document.body.classList.toggle('dark'); const i = document.getElementById('themeIcon'); i.setAttribute('data-lucide', document.body.classList.contains('dark') ? 'sun' : 'moon'); lucide.createIcons(); }
-    function toggleDir() { const h = document.documentElement; h.setAttribute('dir', h.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'); }
-
-    function switchView(viewId, el) {
-      document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
-      document.getElementById('view-' + viewId).classList.add('active');
-      if (el) {
-        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-        el.classList.add('active');
-      }
-      if (window.innerWidth <= 1024) toggleSidebar();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function toggleSidebar() {
-      const s = document.querySelector('.sidebar');
-      const o = document.querySelector('.sidebar-overlay');
-      s.classList.toggle('active');
-      o.classList.toggle('active');
-    }
-
-    const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1 });
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => ro.observe(el));
-
-  </script>
+  <script src="main.js"></script>
 </body>
 
 </html>

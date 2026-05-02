@@ -45,8 +45,8 @@
       </li>
     </ul>
     <div class="header-right">
-      <button class="btn-theme" onclick="toggleDir()" title="Toggle RTL/LTR"><i data-lucide="globe"></i></button>
-      <button class="btn-theme" onclick="toggleTheme()"><i data-lucide="moon" id="themeIcon"></i></button>
+      <button class="btn-toggle" onclick="toggleDir()" title="Toggle RTL/LTR"><span id="lang-toggle-text">LTR</span></button>
+      <button class="btn-toggle" onclick="toggleTheme()" title="Toggle Theme"><i data-lucide="moon" id="themeIcon"></i></button>
       <a href="login.html" class="btn-shop-now">Login</a>
       <button class="hamburger" onclick="openMobileNav()"><span></span><span></span><span></span></button>
     </div>
@@ -234,28 +234,12 @@
     <div class="footer-bottom"><p>© 2025 Furnique. All rights reserved.</p><p>Privacy Policy · Terms of Service</p></div>
   </footer>
 
+  <script src="main.js"></script>
   <script>
-    lucide.createIcons();
-    window.addEventListener('scroll', () => document.getElementById('mainHeader').classList.toggle('scrolled', window.scrollY > 50));
-    function toggleTheme() { document.body.classList.toggle('dark'); const i = document.getElementById('themeIcon'); i.setAttribute('data-lucide', document.body.classList.contains('dark') ? 'sun' : 'moon'); lucide.createIcons(); }
-    function toggleDir() { const h = document.documentElement; h.setAttribute('dir', h.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl'); }
-    function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.getElementById('overlay').classList.add('open'); document.querySelectorAll('.mobile-sub').forEach(s => s.classList.remove('open')); }
-    function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
-    function toggleMobileSub(id, e) { e.preventDefault(); document.getElementById(id).classList.toggle('open'); }
-    function toggleHeaderDropdown(el, e) {
-      e.preventDefault(); e.stopPropagation();
-      const d = el.nextElementSibling;
-      document.querySelectorAll('.dropdown').forEach(dd => { if (dd !== d) dd.classList.remove('open'); });
-      d.classList.toggle('open');
-    }
-    window.addEventListener('click', (e) => {
-      if (!e.target.closest('.nav > li')) {
-        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
-      }
+    // Page-specific FAQ toggle if needed (ensure it's called in HTML)
+    document.querySelectorAll('.reveal h5').forEach(h5 => {
+      h5.addEventListener('click', () => h5.parentElement.classList.toggle('open'));
     });
-    function toggleFAQ(btn) { btn.parentElement.classList.toggle('open'); }
-    const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1 });
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => ro.observe(el));
   </script>
 </body>
 </html>
