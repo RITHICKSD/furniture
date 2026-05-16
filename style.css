@@ -31,16 +31,16 @@
 
 /* Dark theme */
 .dark {
-  --bg-primary: #1A1714;
-  --bg-secondary: #211E1A;
-  --bg-card: #272220;
-  --bg-card2: #2E2A26;
+  --bg-primary: #000000;
+  --bg-secondary: #0A0A0A;
+  --bg-card: #121212;
+  --bg-card2: #181818;
   --text-primary: #F5EFE8;
   --text-muted: #A09080;
   --border: rgba(255, 255, 255, 0.08);
   --border-dark: rgba(255, 255, 255, 0.15);
-  --shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+  --shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.9);
 }
 
 /* ── Reset ──────────────────────────────────────── */
@@ -125,7 +125,7 @@ h5 {
 }
 
 .section-pad {
-  padding: 100px 40px;
+  padding: 80px 40px;
 }
 
 /* ── Section Header ─────────────────────────────── */
@@ -2352,10 +2352,15 @@ h5 {
 
 @media (max-width: 1024px) {
 
-  .container,
+  .container {
+    max-width: 900px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: 0 auto;
+  }
+
   .section-pad {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding: 60px 0;
   }
 
   .hero-inner {
@@ -2490,13 +2495,14 @@ h5 {
   }
 
   .footer-inner {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
   }
 
   .footer-bottom {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
   }
 
   .dash-stat-grid {
@@ -2544,6 +2550,44 @@ h5 {
 
   .stats-inner {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --section-pad: 40px 16px;
+  }
+  
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .btn-shop-now, .btn-primary {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .cat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-inner {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
   }
 }
 

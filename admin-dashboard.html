@@ -11,7 +11,8 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     .admin-sidebar {
-      background: #0F0D0B;
+      background: #1A1714; /* Dark wood/brand-aligned tone */
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .dark .admin-sidebar {
@@ -275,21 +276,37 @@
       <a href="user-dashboard.html" class="sidebar-link"><i data-lucide="user"></i> User Dashboard</a>
       <a href="login.html" class="sidebar-link" style="color:#E05C5C;"><i data-lucide="log-out"></i> Logout</a>
 
-      <div
-        style="margin-top:auto; padding-top:24px; display:flex; justify-content:center; gap:12px; border-top:1px solid rgba(255,255,255,0.1);">
-        <button class="btn-toggle" onclick="toggleDir()" title="Toggle RTL/LTR" style="border-color: rgba(255,255,255,0.2); background: transparent; color: #fff;">
-          <span id="lang-toggle-text">LTR</span>
-        </button>
-        <button class="btn-toggle" onclick="toggleTheme()" title="Toggle Theme" style="border-color: rgba(255,255,255,0.2); background: transparent; color: #fff;">
-          <i data-lucide="moon" id="themeIcon"></i>
-        </button>
+      <div style="margin-top:auto; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1);">
+        <div class="sidebar-user" style="display:flex; align-items:center; gap:12px; padding: 0 16px;">
+          <img src="https://i.pravatar.cc/150?img=11" style="width:36px; height:36px; border-radius:50%; border:2px solid var(--accent);" />
+          <div style="overflow:hidden;">
+            <div class="sidebar-name" style="font-size:14px; font-weight:600; color:#fff; white-space:nowrap; text-overflow:ellipsis;">Erik Lindqvist</div>
+            <div class="sidebar-email" style="font-size:11px; color:rgba(255,255,255,0.4);">Administrator</div>
+          </div>
+        </div>
       </div>
     </aside>
 
     <button class="menu-toggle" style="display:none;" onclick="toggleSidebar()"><i data-lucide="menu"></i></button>
 
     <!-- Main Content -->
-    <main class="dashboard-content">
+    <main class="dashboard-content" style="padding-top: 20px;">
+      
+      <!-- Top Action Bar -->
+      <div style="display:flex; justify-content:flex-end; align-items:center; gap:16px; margin-bottom: 30px; position: sticky; top: 0; z-index: 100; background: var(--bg-secondary); padding: 10px 0;">
+        <div style="display:flex; gap:8px;">
+          <button class="btn-toggle" onclick="toggleDir()" title="Toggle RTL/LTR"><span id="lang-toggle-text">LTR</span></button>
+          <button class="btn-toggle" onclick="toggleTheme()" title="Toggle Theme"><i data-lucide="moon" id="themeIcon"></i></button>
+        </div>
+        <div style="width:1px; height:24px; background:var(--border);"></div>
+        <div style="display:flex; align-items:center; gap:12px; cursor:pointer;" class="profile-trigger">
+          <div style="text-align:right;">
+            <div style="font-size:14px; font-weight:700;">Erik Lindqvist</div>
+            <div style="font-size:11px; color:var(--text-muted);">Admin Account</div>
+          </div>
+          <img src="https://i.pravatar.cc/150?img=11" style="width:44px; height:44px; border-radius:12px; object-fit:cover; border:1px solid var(--border);" />
+        </div>
+      </div>
 
       <!-- VIEW: OVERVIEW -->
       <section id="view-overview" class="view-section active">

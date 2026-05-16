@@ -133,18 +133,21 @@
     <div class="blob blob-2"></div>
   </div>
 
+  <div class="auth-controls" style="position: fixed; top: 30px; right: 30px; display: flex; gap: 12px; z-index: 1000;">
+    <button class="btn-toggle" onclick="toggleDir()" title="Toggle RTL/LTR"><span id="lang-toggle-text">LTR</span></button>
+    <button class="btn-toggle" onclick="toggleTheme()" title="Toggle Theme"><i data-lucide="moon" id="themeIcon"></i></button>
+  </div>
+
   <div class="auth-card">
-    <div class="auth-controls">
-      <button class="btn-toggle" onclick="toggleDir()" title="Toggle RTL/LTR"><span id="lang-toggle-text">LTR</span></button>
-      <button class="btn-toggle" onclick="toggleTheme()" title="Toggle Theme"><i data-lucide="moon" id="themeIcon"></i></button>
-    </div>
+
 
     <div class="auth-header">
-      <a href="index.html" class="logo" style="justify-content:center; margin-bottom: 24px;">
+      <a href="index.html" class="logo" style="justify-content:center; margin-bottom: 30px;">
         <div class="logo-icon"><i data-lucide="armchair"></i></div>
         <span class="logo-text">Furni<span>que</span></span>
       </a>
-      <h2>Welcome back! Please login to your account</h2>
+      <h1 style="font-family:'Playfair Display', serif; font-size: 36px; margin-bottom: 8px;">Welcome</h1>
+      <p style="color: var(--text-muted); font-size: 16px;">Please login to your account to continue</p>
     </div>
 
     <form action="user-dashboard.html">
@@ -170,7 +173,7 @@
       Continue with Google
     </button>
     <button class="btn-social">
-      <i data-lucide="facebook" style="width:20px; color: #1877F2; fill: #1877F2;"></i>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook" style="width:20px" />
       Continue with Facebook
     </button>
 

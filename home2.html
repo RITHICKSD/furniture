@@ -100,34 +100,47 @@
       </div>
     </section>
 
-    <!-- §2 CATEGORY SCROLL -->
-    <section style="padding:60px 0;background:var(--bg-secondary);">
+    <!-- §2 FEATURED ARTISANS — A new section replacing the redundant category scroll -->
+    <section class="section-pad" style="background:var(--bg-secondary);">
       <div class="container">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:30px;">
-          <div>
-            <div class="tag"><i data-lucide="layers" style="width:14px"></i> All Rooms</div>
-            <h2 style="font-size:clamp(26px,3vw,38px);">Browse by <span class="gradient-text">Space</span></h2>
-          </div>
-          <a href="index.html#categories" class="btn-outline">View All</a>
+        <div class="section-header reveal">
+          <div class="tag"><i data-lucide="users" style="width:14px"></i> The Makers</div>
+          <h2>Featured <span class="gradient-text">Artisans</span></h2>
+          <p>Meet the master craftsmen behind our most iconic pieces. Traditional techniques, modern vision.</p>
         </div>
-        <div class="cat-scroll-wrap">
-          <div class="cat-scroll">
-            <a href="#" class="cat-scroll-card">
-              <div class="cat-icon"><i data-lucide="armchair"></i></div>
-              <h5>Living Room</h5><span>214 Items</span>
-            </a>
-            <a href="#" class="cat-scroll-card">
-              <div class="cat-icon"><i data-lucide="bed"></i></div>
-              <h5>Bedroom</h5><span>178 Items</span>
-            </a>
-            <a href="#" class="cat-scroll-card">
-              <div class="cat-icon"><i data-lucide="utensils-crossed"></i></div>
-              <h5>Dining</h5><span>96 Items</span>
-            </a>
-            <a href="#" class="cat-scroll-card">
-              <div class="cat-icon"><i data-lucide="monitor"></i></div>
-              <h5>Office</h5><span>143 Items</span>
-            </a>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:30px;">
+          <div class="seller-card reveal">
+            <div class="seller-avatar">
+              <img src="https://i.pravatar.cc/300?img=68" alt="Artisan 1">
+            </div>
+            <h4 class="seller-name">Anders Jensen</h4>
+            <p style="font-size:14px;color:var(--text-muted);margin-bottom:15px;">Master Woodworker — 25 years experience in Scandinavian joinery.</p>
+            <div style="display:flex;gap:8px;justify-content:center;">
+              <span class="tag" style="font-size:10px;padding:4px 8px;">Solid Oak</span>
+              <span class="tag" style="font-size:10px;padding:4px 8px;">Walnut</span>
+            </div>
+          </div>
+          <div class="seller-card reveal delay-1">
+            <div class="seller-avatar">
+              <img src="https://i.pravatar.cc/300?img=32" alt="Artisan 2">
+            </div>
+            <h4 class="seller-name">Elena Moretti</h4>
+            <p style="font-size:14px;color:var(--text-muted);margin-bottom:15px;">Leather Specialist — Expert in hand-stitched premium Italian leathers.</p>
+            <div style="display:flex;gap:8px;justify-content:center;">
+              <span class="tag" style="font-size:10px;padding:4px 8px;">Top Grain</span>
+              <span class="tag" style="font-size:10px;padding:4px 8px;">Nubuck</span>
+            </div>
+          </div>
+          <div class="seller-card reveal delay-2">
+            <div class="seller-avatar">
+              <img src="https://i.pravatar.cc/300?img=12" alt="Artisan 3">
+            </div>
+            <h4 class="seller-name">Kaito Tanaka</h4>
+            <p style="font-size:14px;color:var(--text-muted);margin-bottom:15px;">Stone Carver — Specializes in precision-cut marble and granite surfaces.</p>
+            <div style="display:flex;gap:8px;justify-content:center;">
+              <span class="tag" style="font-size:10px;padding:4px 8px;">Carrara</span>
+              <span class="tag" style="font-size:10px;padding:4px 8px;">Travertine</span>
+            </div>
           </div>
         </div>
       </div>
@@ -141,7 +154,7 @@
           <h2>Editor's <span class="gradient-text">Picks</span></h2>
           <p>Personally selected by our lead designer — furniture that defines how you live.</p>
         </div>
-        <div class="products-grid">
+        <div class="products-grid" style="grid-template-columns: repeat(3, 1fr);">
           <div class="product-card reveal">
             <div class="product-img">
               <img src="https://images.unsplash.com/photo-1549187774-b4e9b0445b41?auto=format&fit=crop&w=600&q=80"
@@ -168,6 +181,18 @@
                     data-lucide="shopping-bag" style="width:18px"></i></button></div>
             </div>
           </div>
+          <div class="product-card reveal delay-2">
+            <div class="product-img">
+              <img src="f10.jpg" alt="Nightstand" />
+              <span class="product-badge">Trending</span>
+            </div>
+            <div class="product-info">
+              <div class="product-cat">Bedroom</div>
+              <h3 class="product-name">Nordic Nightstand</h3>
+              <div class="product-footer"><span class="product-price">$320</span><button class="btn-add-cart"><i
+                    data-lucide="shopping-bag" style="width:18px"></i></button></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -180,7 +205,7 @@
           <h2>Crafted from <span class="gradient-text">Nature's Finest</span></h2>
           <p>We work with signature materials chosen for beauty, durability, and sustainability.</p>
         </div>
-        <div class="material-grid">
+        <div class="material-grid" style="grid-template-columns: repeat(3, 1fr);">
           <div class="material-card reveal">
             <img src="f3.jpg" alt="Oak Wood" />
             <div class="material-info">
@@ -193,6 +218,13 @@
             <div class="material-info">
               <div class="material-name">Black Walnut</div>
               <div class="material-desc">Rich, dark tones with a natural lustre that never fades.</div>
+            </div>
+          </div>
+          <div class="material-card reveal delay-2">
+            <img src="f10.jpg" alt="Marble" />
+            <div class="material-info">
+              <div class="material-name">Italian Marble</div>
+              <div class="material-desc">Cool, polished stone with unique natural veining.</div>
             </div>
           </div>
         </div>
@@ -251,7 +283,12 @@
             class="logo-text">Furni<span>que</span></span>
         </a>
         <p class="footer-desc">Handcrafted furniture for the modern home. Built to last, designed for life.</p>
-
+        <div class="footer-socials" style="display:flex;gap:12px;margin-top:20px;">
+          <a href="#" class="social-btn"><i data-lucide="instagram"></i></a>
+          <a href="#" class="social-btn"><i data-lucide="facebook"></i></a>
+          <a href="#" class="social-btn"><i data-lucide="twitter"></i></a>
+          <a href="#" class="social-btn"><i data-lucide="linkedin"></i></a>
+        </div>
       </div>
       <div class="footer-col">
         <h5>Collection</h5>
